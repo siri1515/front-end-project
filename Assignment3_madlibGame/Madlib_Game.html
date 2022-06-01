@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Madlib Game</title>
+    </head>
+    <body lang="en">
+        <h1>Madlib Game</h1>
+        <p style="color:aqua;">Please enter some data as requested below and I will return an interesting story!</p>
+        <form>
+            <p>Please enter an animal:</p>
+            <input type="text" id ="animal">
+            
+            <p>Please enter a country:</p>
+            <input type="text" id ="country">
+            
+            <p>Please choose a number:</p>
+            <input type ="radio" id = "choose_number1" name = "choose_number" value = "1000">
+            <label for = "choose_number1">1000</label>
+            <input type ="radio" id = "choose_number2" name = "choose_number" value = "2000">
+            <label for = "choose_number2">2000</label>
+            <input type ="radio" id = "choose_number3" name = "choose_number" value = "3000">
+            <label for = "choose_number3">3000</label>
+            
+            <p>Please enter plural noun:</p>
+            <input type="text" id ="plural_noun">
+            
+            <p>Please enter a food:</p>
+            <input type="text" id ="food">
+            
+            <p>Please enter a number:</p>
+            <input type="text" id ="number2">
+            
+            <p>Please enter a type of screen device:</p>
+            <input type="text" id ="screen_device">
+            
+            <p>Please enter verb:</p>
+            <input type="text" id ="verb">
+            
+            <p>Please enter adjective:</p>
+            <input type="text" id ="adjective">
+        </form>
+
+        <script>
+            
+            function check_if_string()
+            {
+                if((isNaN(document.getElementById("animal").value) == true) && (isNaN(document.getElementById("country").value) == true) 
+                && (isNaN(document.getElementById("plural_noun").value) == true) && (isNaN(document.getElementById("food").value) == true) 
+                && (isNaN(document.getElementById("screen_device").value) == true) && (isNaN(document.getElementById("verb").value) == true) 
+                && (isNaN(document.getElementById("adjective").value) == true))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+            function check_if_number()
+            {
+                if(isNaN(parseInt(document.getElementById("number2").value)) == true)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            function check_if_not_empty()
+            {
+                if((document.getElementById("animal").value.length && document.getElementById("country").value.length 
+                && document.getElementById("plural_noun").value.length && document.getElementById("food").value.length 
+                && document.getElementById("number2").value.length && document.getElementById("screen_device").value.length 
+                && document.getElementById("verb").value.length && document.getElementById("adjective").value.length) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            function radio_button_check()
+            {
+                let choose_number;
+                if(document.getElementById("choose_number1").checked)
+                {
+                    choose_number = document.getElementById("choose_number1").value;
+                    return parseInt(choose_number);
+                }
+                else if(document.getElementById("choose_number2").checked)
+                {
+                    choose_number = document.getElementById("choose_number2").value;
+                    return parseInt(choose_number);
+                }
+                else if(document.getElementById("choose_number3").checked)
+                {
+                    choose_number = document.getElementById("choose_number3").value;
+                    return parseInt(choose_number);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            function output()
+            {   
+                let combin_number = document.getElementById("number2").value * radio_button_check();
+                
+                let output = document.getElementById("output");
+                
+                if((check_if_not_empty() == true) && (check_if_number() == true) && (check_if_string() == true) && (radio_button_check() != false))
+                {
+                    output.innerHTML = "The majestice " + document.getElementById("animal").value + " has roamed the forests of " 
+                    + document.getElementById("country").value + " for thousands of years. Today, she is " + radio_button_check() 
+                    + " years old and she wanders in search of " + document.getElementById("plural_noun").value 
+                    + ". She must find food to survive. While hunting for " + document.getElementById("food").value + ", she found " 
+                    + document.getElementById("number2").value + " " + document.getElementById("screen_device").value
+                    + " hidden behind a tree. She has never seen anything like this before. What will she do? With the device in her teeth, she tries to " 
+                    + document.getElementById("verb").value+ ", but nothing happens. She takes it back to her family. When her family sees it, "
+                    + "they freeze it with " + combin_number + " cubic meters of ice. Soon, the device becomes " + document.getElementById("adjective").value 
+                    + ", and the family decides to put it back where they found it.";
+                }
+                else
+                {
+                    alert("please make sure there's no empty box and input the right type of data(string/number) for each blank box");
+                }
+            }
+        </script>
+
+        <div id = "output"></div>
+        <br>
+        <br>
+        <button onclick="output()">output a story</button>
+    </body>
+</html>
