@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>case</title>
+    </head>
+
+    <body>
+        <p>this is a page that shows message and picture according to the time</p>
+        <img src="picture/goodMorning.jpg" title="good morning">
+        <div>good morning!</div>
+        <script>
+            var img1 = document.querySelector('img');
+            var div1 = document.querySelector('div');
+            var date = new Date();
+            var hour = date.getHours();
+            if(hour < 12 && hour > 5)
+            {
+                img1.src = "picture/goodMorning.jpg";
+                img1.title = "good morning";
+                div1.innerHTML = "Good Morning!";
+            }
+            else if(hour > 11 && hour < 20)
+            {
+                img1.src = "picture/good-afternoon.jpg";
+                img1.title = "good afternoon";
+                div1.innerHTML = "good afternoon";
+            }
+            else
+            {
+                img1.src = "picture/goodNight.jpg";;
+                img1.title = "good night";
+                div1.innerHTML = "It's time to get some rest, good night!"
+            }
+        </script>
+    </body>
+</html>
