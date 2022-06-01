@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Registration Page</title>
+        <style>
+            body{
+                background-image: url('picture/panda.jpg');
+                background-size: 100%;
+            }
+
+            div{
+                text-align: center;
+            }
+
+            .registerBox img{
+                position: absolute;
+                width: 24px;
+                top: 184px;
+                right: 600px;
+            }
+
+            .registerBox input{
+                display: inline-block;
+            }
+
+            .userNameMessage{
+                font-size: 11px;
+                color:red;
+                padding-left: 10px;
+            }
+
+            .passwordMessage{
+                font-size: 11px;
+                color:red;
+                padding-left: 10px;
+            }
+
+            button{
+                background-color: black;
+                color:white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="registerBox">
+            <p style="color:cornflowerblue; font-size: 30px;">Register</p>
+            <br>
+            <label for="">User Name:
+                <input type="text" class="userNameInput">
+                <p class="userNameMessage">(please input the user name)</p>
+            </label>
+            <label for="">Password:  
+                <input type="password" class="passwordInput">
+                <img src="picture/eye_close.png" alt="" id="eye">
+                <p class="passwordMessage">(please input the password which includes 6-10 digits)</p>
+            </label>
+            <br><br>
+            <button>Done</button>
+        </div>
+
+        <script>
+            var passwordInput = document.querySelector('.passwordInput');
+            var userNameInput = document.querySelector('.userNameInput');
+            var passwordMessage = document.querySelector('.passwordMessage');
+            var userNameMessage = document.querySelector('.userNameMessage');
+
+            var userNameCheck = false;
+            var passwordCheck = false;
+            userNameInput.onblur = function(){
+                if(this.value.length == 0)
+                {
+                    userNameMessage.style.color = 'red';
+                    userNameMessage.innerText = 'empty content, please input username';
+                    userNameCheck = false;
+                }
+                else
+                {
+                    userNameMessage.innerText = 'it works!';
+                    userNameMessage.style.color = 'green';
+                    userNameInput.style.color = 'grey';
+                    userNameCheck = true;
+                }
+            }
+            passwordInput.onblur = function(){
+                if(this.value.length == 0)
+                {
+                    passwordMessage.style.color = 'red';
+                    passwordMessage.innerText = 'empty content, please input password';
+                    passwordCheck = false;
+                }
+                else if(this.value.length < 6 || this.value.length > 10)
+                {
+                    passwordMessage.style.color = 'red';
+                    passwordMessage.innerText = 'invalid password, try again!';
+                    this.value = '';
+                    passwordCheck = false;
+                }
+                else
+                {
+                    passwordMessage.innerText = 'it works!';
+                    passwordMessage.style.color = 'green';
+                    passwordInput.style.color = 'grey';
+                    passwordCheck = true;
+                }
+            }
+
+            var eye = document.querySelector('#eye');
+            var flag = 0;
+            eye.onclick = function(){
+                if(flag == 0)
+                {
+                    this.src = 'picture/eye_open.png';
+                    passwordInput.type = 'text';
+                    flag = 1;
+                }
+                else if(flag = 1){
+                    this.src = 'picture/eye_close.png';
+                    passwordInput.type = 'password';
+                    flag = 0;
+                }
+            }
+
+            var button = document.querySelector('button');
+            button.onclick = function(){
+                if(userNameCheck == true && passwordCheck == true)
+                {
+                    alert('all done!');
+                }
+                else
+                {
+                    alert('something goes wrong, please check your input');
+                }
+            }
+
+        </script>
+    </body>
+</html>
