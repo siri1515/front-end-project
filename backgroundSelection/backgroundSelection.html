@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>background selection</title>
+        <style>
+            p{
+                font-size: 40px;
+                font-style: italic;
+                background-color: darkturquoise;
+                color:white;
+            }
+
+            body{
+                background-size: 100%;
+            }
+
+            .pictures img{
+                width: 200px;
+                height: 150px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p>Click the picture you want to use as the background!</p>
+        <ul class="pictures">
+            <li><img src="picture/background1.jpg"></li>
+            <li><img src="picture/background2.jpg"></li>
+            <li><img src="picture/background3.jpg"></li>
+            <li><img src="picture/background4.jpg"></li>
+        </ul>
+
+        <script>
+            var pictureList = document.querySelector('.pictures').querySelectorAll('img');
+            for(var i=0; i<pictureList.length; i++)
+            {
+                pictureList[i].onclick = function(){
+                    document.body.style.backgroundImage = 'url(' + this.src + ')';
+                }
+            }
+        </script>
+    </body>
+</html>
